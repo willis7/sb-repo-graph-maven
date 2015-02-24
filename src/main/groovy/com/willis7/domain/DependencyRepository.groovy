@@ -1,6 +1,5 @@
-package com.willis7.repository
+package com.willis7.domain
 
-import com.willis7.domain.Dependency
 import org.springframework.data.repository.CrudRepository
 
 /**
@@ -10,5 +9,4 @@ public interface DependencyRepository extends CrudRepository<Dependency, String>
 
     Dependency findByArtifactId(String artifactId)
 
-    Iterable<Dependency> findByDependenciesArtifactId(String artifactId)
 }

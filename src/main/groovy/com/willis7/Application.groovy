@@ -1,7 +1,7 @@
 package com.willis7
 
 import com.willis7.domain.Dependency
-import com.willis7.repository.DependencyRepository
+import com.willis7.domain.DependencyRepository
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Transaction
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
@@ -41,7 +41,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
     void run(String... args) throws Exception {
         Dependency junit = new Dependency(groupId: 'junit', artifactId: 'junit', version: '1.0')
         Dependency spock = new Dependency(groupId: 'spock', artifactId: 'spock', version: '1.0')
-        Dependency geb = new Dependency(groupId: 'spock', artifactId: 'spock', version: '1.0')
+        Dependency geb = new Dependency(groupId: 'geb', artifactId: 'geb', version: '1.0')
 
         println "Before linking with neo4j.."
         [junit, spock, geb].each { println it }
@@ -64,11 +64,11 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
             spock.dependsOn(junit)
             dependencyRepository.save(spock)
 
-            println "Lookup each dependency by artifactId"
+            println "Print the dependencies for each artifactId"
             [junit, spock, geb].each { println dependencyRepository.findByArtifactId( it.artifactId ) }
 
             println "Print Gebs dependencies"
-            dependencyRepository.findByDependenciesArtifactId(geb.artifactId).each { println it.artifactId }
+            dependencyRepository.findByArtifactId( geb.artifactId ).dependencies.each { println "\t-" + it.groupId + " " + it.artifactId + " " + it.version }
 
             tx.success()
 

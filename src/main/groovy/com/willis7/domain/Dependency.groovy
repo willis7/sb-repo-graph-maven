@@ -18,7 +18,7 @@ public class Dependency {
     String artifactId
     String version
 
-    @RelatedTo(type = "DEPENDS", direction = Direction.OUTGOING)
+    @RelatedTo(type = "DEPENDS", direction = Direction.INCOMING)
     public @Fetch Set<Dependency> dependencies
 
     public void dependsOn(Dependency dependency) {
@@ -33,7 +33,7 @@ public class Dependency {
         String results = groupId + " " + artifactId + " " + version + "\n"
         if (dependencies) {
             dependencies.each {
-                results += "\t-" + groupId + " " + artifactId + " " + version + "\n"
+                results += "\t-" + it.groupId + " " + it.artifactId + " " + it.version + "\n"
             }
         }
         results
