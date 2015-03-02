@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.codehaus.groovy:groovy:2.4.0")
+    compile("org.codehaus.groovy:groovy-all:2.4.0")
     compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework:spring-context")
     compile("org.springframework:spring-tx")

@@ -5,6 +5,8 @@ package com.willis7.utils
  */
 public class POMFinder {
     def repoDir
+
+    // Helper property to determine where the code is being run from
     def projectDir = System.getProperty("user.dir")
 
     /**
