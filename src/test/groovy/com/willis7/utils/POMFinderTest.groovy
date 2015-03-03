@@ -17,4 +17,15 @@ class POMFinderTest extends Specification {
         then: "expect results to equal actual number of files"
         results.size() == 3
     }
+
+    def "getAllPOMs throws exception when file not found"() {
+        given:
+        POMFinder pomFinder = new POMFinder()
+
+        when: "I run the finder method with an invalid path"
+        pomFinder.getAllPOMs('/some/rubbish/path')
+
+        then: "expect results to equal actual number of files"
+        thrown FileNotFoundException
+    }
 }
