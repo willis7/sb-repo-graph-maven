@@ -1,21 +1,22 @@
 package com.willis7.utils
 
 /**
+ * Helper class for finding and returning files which satisfy a matcher
+ *
  * @author Sion Williams
  */
 public class POMFinder {
-    def repoDir
-
     // Helper property to determine where the code is being run from
     def projectDir = System.getProperty("user.dir")
 
     /**
-     * getAllPOMs
+     * Return a list of files which end in '.pom'
      *
-     * @return pomList a list of matching files ending in .pom
+     * @param repoPath relative path to System.getProperty("user.dir") which should hold Maven poms
+     * @return List of matching files ending in .pom
      */
-    def getAllPOMs() {
-        def absoluteRepoDir = new File(projectDir, repoDir)
+    def getAllPOMs(String repoPath) {
+        def absoluteRepoDir = new File(projectDir, repoPath)
         def pomList = []
 
         absoluteRepoDir.traverse { File file ->

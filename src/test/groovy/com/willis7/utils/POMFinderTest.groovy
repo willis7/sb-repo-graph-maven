@@ -9,10 +9,10 @@ class POMFinderTest extends Specification {
 
     def "getAllPOMs method returns correct number of files"() {
         given:
-        POMFinder pomFinder = new POMFinder(repoDir: '/src/test/resources/repository/')
+        POMFinder pomFinder = new POMFinder()
 
         when: "I run the finder method"
-        def results = pomFinder.getAllPOMs()
+        def results = pomFinder.getAllPOMs('/src/test/resources/repository/')
 
         then: "expect results to equal actual number of files"
         results.size() == 3

@@ -7,7 +7,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity
 import org.springframework.data.neo4j.annotation.RelatedTo
 
 /**
- * Dependency Node Entity
+ * Dependency Node Entity.The Dependency class is annotated {@code @NodeEntity}. When Neo4j stores it, it results in the creation of a new node.
  * @author Sion Williams
  */
 @NodeEntity
@@ -21,6 +21,11 @@ public class Dependency {
     @RelatedTo(type = "DEPENDS", direction = Direction.INCOMING)
     public @Fetch Set<Dependency> dependencies
 
+    /**
+     * Used to link dependencies together with Direction.INCOMING
+     *
+     * @param dependency Another dependency entity
+     */
     public void dependsOn(Dependency dependency) {
         if ( !dependencies ) {
             dependencies == new HashSet<Dependency>()
