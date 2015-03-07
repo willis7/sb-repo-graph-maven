@@ -12,8 +12,9 @@ public class POMFinder {
     /**
      * Return a list of files which end in '.pom'
      *
-     * @param repoPath relative path to System.getProperty("user.dir") which should hold Maven poms
+     * @param repoPath a path relative to System.getProperty("user.dir") which should hold Maven poms
      * @return List of matching files ending in .pom
+     * @throws FileNotFoundException
      */
     def getAllPOMs(String repoPath) throws FileNotFoundException {
         def absoluteRepoDir = new File(projectDir, repoPath)
