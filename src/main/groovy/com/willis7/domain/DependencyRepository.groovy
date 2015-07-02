@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository
 /**
  * @author Sion Williams
  */
-public interface DependencyRepository extends CrudRepository<Dependency, String> {
+public interface DependencyRepository extends CrudRepository<Artifact, String> {
 
-    Dependency findByArtifactId(String artifactId)
+    Artifact findByArtifactId(String artifactId)
 
 }

@@ -1,6 +1,6 @@
 package com.willis7
 
-import com.willis7.domain.Dependency
+import com.willis7.domain.Artifact
 import com.willis7.domain.DependencyRepository
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Transaction
@@ -16,6 +16,8 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration
 import org.springframework.data.neo4j.core.GraphDatabase
 
 /**
+ * Application entry point
+ *
  * @author Sion Williams
  */
 @Configuration
@@ -39,9 +41,9 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
 
     @Override
     void run(String... args) throws Exception {
-        Dependency junit = new Dependency(groupId: 'junit', artifactId: 'junit', version: '1.0')
-        Dependency spock = new Dependency(groupId: 'spock', artifactId: 'spock', version: '1.0')
-        Dependency geb = new Dependency(groupId: 'geb', artifactId: 'geb', version: '1.0')
+        Artifact junit = new Artifact(groupId: 'junit', artifactId: 'junit', version: '1.0')
+        Artifact spock = new Artifact(groupId: 'spock', artifactId: 'spock', version: '1.0')
+        Artifact geb = new Artifact(groupId: 'geb', artifactId: 'geb', version: '1.0')
 
         println "Before linking with neo4j.."
         [junit, spock, geb].each { println it }

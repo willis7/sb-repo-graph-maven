@@ -11,26 +11,26 @@ import org.springframework.data.neo4j.annotation.RelatedTo
  * @author Sion Williams
  */
 @NodeEntity
-public class Dependency {
+public class Artifact {
 
     @GraphId Long id
     String groupId
     String artifactId
     String version
 
-    @RelatedTo(type = "DEPENDS", direction = Direction.INCOMING)
-    public @Fetch Set<Dependency> dependencies
+    @RelatedTo(type = "DEPENDS_ON", direction = Direction.OUTGOING)
+    public @Fetch Set<Artifact> dependencies
 
     /**
      * Used to link dependencies together with Direction.INCOMING
      *
-     * @param dependency Another dependency entity
+     * @param artifact Another dependency entity
      */
-    public void dependsOn(Dependency dependency) {
+    public void dependsOn(Artifact artifact) {
         if ( !dependencies ) {
-            dependencies == new HashSet<Dependency>()
+            dependencies == new HashSet<Artifact>()
         }
-        dependencies.add(dependency)
+        dependencies.add(artifact)
     }
 
     @Override
