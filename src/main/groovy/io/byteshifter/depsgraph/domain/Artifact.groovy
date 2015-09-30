@@ -1,4 +1,4 @@
-package com.willis7.domain
+package io.byteshifter.depsgraph.domain
 
 import org.neo4j.graphdb.Direction
 import org.springframework.data.neo4j.annotation.Fetch
@@ -7,12 +7,13 @@ import org.springframework.data.neo4j.annotation.NodeEntity
 import org.springframework.data.neo4j.annotation.RelatedTo
 
 /**
- * Dependency Node Entity.The Dependency class is annotated {@code @NodeEntity}. When Neo4j stores it, it results in the creation of a new node.
+ * Dependency Node Entity.
+ * The Dependency class is annotated {@code @NodeEntity}. When Neo4j stores it, it results in the creation of a new node.
  * @author Sion Williams
  */
 @NodeEntity
 public class Artifact {
-
+    // Coordinates
     @GraphId Long id
     String groupId
     String artifactId
@@ -22,7 +23,7 @@ public class Artifact {
     public @Fetch Set<Artifact> dependencies
 
     /**
-     * Used to link dependencies together with Direction.INCOMING
+     * Used to link dependencies together with Direction.OUTGOING
      *
      * @param artifact Another dependency entity
      */

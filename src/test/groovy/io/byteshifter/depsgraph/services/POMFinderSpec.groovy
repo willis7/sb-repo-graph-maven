@@ -1,11 +1,11 @@
-package com.willis7.utils
+package io.byteshifter.depsgraph.services
 
 import spock.lang.Specification
 
 /**
- * Created by willis7 on 24/02/15.
+ * @author Sion Williams
  */
-class POMFinderTest extends Specification {
+class POMFinderSpec extends Specification {
 
     def "getAllPOMs method returns correct number of files"() {
         given:

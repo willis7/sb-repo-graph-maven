@@ -1,4 +1,4 @@
-package com.willis7.utils
+package io.byteshifter.depsgraph.services
 
 /**
  * Helper class for finding and returning files which satisfy a matcher
@@ -6,7 +6,7 @@ package com.willis7.utils
  * @author Sion Williams
  */
 public class POMFinder {
-    // Helper property to determine where the code is being run from
+    // Reference to determine where the code is being run from
     def projectDir = System.getProperty("user.dir")
 
     /**
@@ -21,10 +21,19 @@ public class POMFinder {
         def pomList = []
 
         absoluteRepoDir.traverse { File file ->
-            if(file.name.endsWith('.pom')) {
+            if(isPomFile(file)) {
                 pomList << file
             }
         }
         pomList
+    }
+
+    /**
+     *
+     * @param file
+     * @return boolean based on whether file is a POM
+     */
+    private boolean isPomFile(File file) {
+        file.name.endsWith('.pom')
     }
 }

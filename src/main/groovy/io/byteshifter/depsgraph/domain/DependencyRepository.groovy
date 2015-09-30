@@ -1,4 +1,4 @@
-package com.willis7.domain
+package io.byteshifter.depsgraph.domain
 
 import org.springframework.data.repository.CrudRepository
 
