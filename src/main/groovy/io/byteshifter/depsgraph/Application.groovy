@@ -87,7 +87,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
     }
 
     public static void main(String[] args) throws Exception {
-        FileUtils.deleteRecursively( new File("mavendeps.db") )
+        FileUtils.deleteRecursively( new File("build/mavendeps.db") )
 
         SpringApplication.run(Application.class, args)
     }

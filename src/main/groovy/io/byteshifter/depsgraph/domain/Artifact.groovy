@@ -19,8 +19,9 @@ public class Artifact {
     String artifactId
     String version
 
+    @Fetch
     @RelatedTo(type = "DEPENDS_ON", direction = Direction.OUTGOING)
-    public @Fetch Set<Artifact> dependencies
+    public Set<Artifact> dependencies
 
     /**
      * Used to link dependencies together with Direction.OUTGOING
@@ -29,7 +30,7 @@ public class Artifact {
      */
     public void dependsOn(Artifact artifact) {
         if ( !dependencies ) {
-            dependencies == new HashSet<Artifact>()
+            dependencies = new HashSet<Artifact>()
         }
         dependencies.add(artifact)
     }
