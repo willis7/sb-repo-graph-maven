@@ -14,7 +14,7 @@ apply plugin: 'spring-boot'
 apply from: "$rootDir/gradle/integTest.gradle"
 
 jar {
-    baseName = 'gs-accessing-data-neo4j'
+    baseName = 'sb-repo-graph-maven'
     version =  '0.1.0'
 }
 

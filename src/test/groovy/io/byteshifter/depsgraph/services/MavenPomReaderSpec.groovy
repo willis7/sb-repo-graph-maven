@@ -21,8 +21,8 @@ class MavenPomReaderSpec extends Specification {
         then:
         model.name == "ActiveMQ :: Pool"
         model.dependencies.size() == 12
-        model.groupId == 'org.apache.activemq'
-        model.artifactId == 'activemq-parent'
+        model.groupId == null
+        model.artifactId == 'activemq-pool'
         model.version == '5.9.1'
     }
 }
