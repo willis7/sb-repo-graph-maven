@@ -12,6 +12,8 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply from: "$rootDir/gradle/integTest.gradle"
+apply from: "$rootDir/gradle/codenarc.gradle"
+apply from: "$rootDir/gradle/jacoco.gradle"
 
 jar {
     baseName = 'sb-repo-graph-maven'

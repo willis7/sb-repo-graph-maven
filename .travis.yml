@@ -1,9 +1,17 @@
 language: groovy
 
+sudo: false
+
 jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
 
 before_install:
-  - chmod +x gradlew
+ - chmod +x gradlew
+
+after_success:
+ - ./gradlew jacocoTestReport coveralls
+
+after_failure:
+ - ./gradlew clean check --debug
