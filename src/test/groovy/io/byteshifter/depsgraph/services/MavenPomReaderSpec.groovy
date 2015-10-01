@@ -7,6 +7,15 @@ import spock.lang.Specification
  * @author Sion Williams
  */
 class MavenPomReaderSpec extends Specification {
+
+    def "creating an instance of MavenPomReader throws an exception"() {
+        when:
+        new MavenPomReader()
+
+        then:
+        thrown UnsupportedOperationException
+    }
+
     def "test readModelPom()"() {
         setup:
         def resource = getClass()
