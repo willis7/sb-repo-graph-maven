@@ -1,7 +1,7 @@
 package io.byteshifter.depsgraph
 
 import io.byteshifter.depsgraph.domain.Artifact
-import io.byteshifter.depsgraph.domain.DependencyRepository
+import io.byteshifter.depsgraph.domain.ArtifactRepository
 import io.byteshifter.depsgraph.services.MavenPomReader
 import io.byteshifter.depsgraph.services.POMFinder
 import org.apache.maven.model.Model
@@ -37,7 +37,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
     }
 
     @Autowired
-    DependencyRepository dependencyRepository
+    ArtifactRepository artifactRepository
 
     @Autowired
     GraphDatabase graphDatabase
@@ -62,7 +62,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
                 Artifact artifact = new Artifact(groupId: model.groupId,
                                             artifactId: model.artifactId,
                                             version: model.version)
-                dependencyRepository.save(artifact)
+                artifactRepository.save(artifact)
 
                 // For each of the dependencies, create a new Artifact node and create
                 // a dependency vector
@@ -70,13 +70,13 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
                     Artifact depnd = new Artifact(groupId: dependency.groupId,
                                             artifactId: dependency.artifactId,
                                             version: dependency.version)
-                    dependencyRepository.save(depnd)
+                    artifactRepository.save(depnd)
                     artifact.dependsOn(depnd)
-                    dependencyRepository.save(artifact)
+                    artifactRepository.save(artifact)
                 }
 
                 // Retrieve the artifact from the database and print its dependencies
-                dependencyRepository.findByArtifactId( artifact.artifactId ).dependencies.each { println "\t-" + it.groupId + " " + it.artifactId + " " + it.version }
+                artifactRepository.findByArtifactId( artifact.artifactId ).dependencies.each { println "\t-" + it.groupId + " " + it.artifactId + " " + it.version }
             }
 
             tx.success()
