@@ -4,6 +4,7 @@ import io.byteshifter.depsgraph.domain.Artifact
 import io.byteshifter.depsgraph.domain.ArtifactRepository
 import io.byteshifter.depsgraph.services.MavenPomReader
 import io.byteshifter.depsgraph.services.POMFinder
+import io.byteshifter.depsgraph.utils.ModelToArtifact
 import org.apache.maven.model.Model
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Transaction
@@ -48,6 +49,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
         // Search a directory and return all of the available poms
         POMFinder pomFinder = new POMFinder()
         def results = pomFinder.getAllPOMs('/src/test/resources/repository/')
+        def transformer = new ModelToArtifact()
 
 
         Transaction tx = graphDatabase.beginTx()
@@ -59,17 +61,13 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
                 Model model = MavenPomReader.readModelPom(new File(pomFile.path))
 
                 // Create and save an Artifact node from the Maven Model
-                Artifact artifact = new Artifact(groupId: model.groupId,
-                                            artifactId: model.artifactId,
-                                            version: model.version)
+                Artifact artifact = transformer.transform(model)
                 artifactRepository.save(artifact)
 
                 // For each of the dependencies, create a new Artifact node and create
                 // a dependency vector
                 model.dependencies.each { dependency ->
-                    Artifact depnd = new Artifact(groupId: dependency.groupId,
-                                            artifactId: dependency.artifactId,
-                                            version: dependency.version)
+                    Artifact depnd = transformer.transform(dependency)
                     artifactRepository.save(depnd)
                     artifact.dependsOn(depnd)
                     artifactRepository.save(artifact)
