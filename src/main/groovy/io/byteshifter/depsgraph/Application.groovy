@@ -4,7 +4,6 @@ import io.byteshifter.depsgraph.domain.Artifact
 import io.byteshifter.depsgraph.domain.ArtifactRepository
 import io.byteshifter.depsgraph.services.MavenPomReader
 import io.byteshifter.depsgraph.services.POMFinder
-import io.byteshifter.depsgraph.utils.ModelToArtifact
 import org.apache.maven.model.Model
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Transaction
