@@ -10,7 +10,12 @@ The idea behind this project is to leverage the metadata from your Maven (and ev
 
 ## Installation
 
-Run `./gradlew bootRun` from your cmd line.
+This project uses both Docker Compose and Gradle to help build and develop this application.
+
+To run this application, follow these instructions:
+
+1. Build the application - from the root directory type `./gradlew assemble`
+2. Provision environment - `docker-compose up`
 
 ## Usage
 

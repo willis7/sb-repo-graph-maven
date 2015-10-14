@@ -1,0 +1,12 @@
+db:
+  image: neo4j/neo4j
+  ports:
+   - "7474:7474"
+  environment:
+    NEO4J_AUTH: none
+web:
+  build: .
+  links:
+   - db
+  ports:
+   - "8000:8000"
