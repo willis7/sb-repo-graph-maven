@@ -12,7 +12,7 @@ import org.springframework.data.neo4j.annotation.RelatedTo
  * @author Sion Williams
  */
 @NodeEntity
-public class Artifact {
+public class Dependency {
     // Coordinates
     @GraphId Long id
     String groupId
@@ -21,18 +21,18 @@ public class Artifact {
 
     @Fetch
     @RelatedTo(type = "DEPENDS_ON", direction = Direction.OUTGOING)
-    public Set<Artifact> dependencies
+    public Set<Dependency> dependencies
 
     /**
      * Used to link dependencies together with Direction.OUTGOING
      *
-     * @param artifact Another dependency entity
+     * @param dependency Another dependency entity
      */
-    public void dependsOn(Artifact artifact) {
+    public void dependsOn(Dependency dependency) {
         if ( !dependencies ) {
-            dependencies = new HashSet<Artifact>()
+            dependencies = new HashSet<Dependency>()
         }
-        dependencies.add(artifact)
+        dependencies.add(dependency)
     }
 
     @Override

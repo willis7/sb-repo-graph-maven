@@ -1,7 +1,7 @@
 package io.byteshifter.depsgraph
 
-import io.byteshifter.depsgraph.domain.Artifact
-import io.byteshifter.depsgraph.domain.ArtifactRepository
+import io.byteshifter.depsgraph.domain.Dependency
+import io.byteshifter.depsgraph.domain.DependencyRepository
 import io.byteshifter.depsgraph.services.MavenPomReader
 import io.byteshifter.depsgraph.services.POMFinder
 import org.apache.maven.model.Model
@@ -38,7 +38,7 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
     }
 
     @Autowired
-    ArtifactRepository artifactRepository
+    DependencyRepository artifactRepository
 
     @Autowired
     GraphDatabase graphDatabase
@@ -61,25 +61,25 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
                 // Build a Maven Model from the POM
                 Model model = MavenPomReader.readModelPom(new File(pomFile.path))
 
-                // Create and save an Artifact node from the Maven Model
-                Artifact artifact = new Artifact(groupId: model.groupId,
+                // Create and save an Dependency node from the Maven Model
+                Dependency dependency = new Dependency(groupId: model.groupId,
                                                     artifactId: model.artifactId,
                                                     version: model.version)
-                artifactRepository.save(artifact)
+                artifactRepository.save(dependency)
 
-                // For each of the dependencies, create a new Artifact node and create
+                // For each of the dependencies, create a new Dependency node and create
                 // a dependency vector
-                model.dependencies.each { dependency ->
-                    Artifact depnd = new Artifact(groupId: dependency.groupId,
-                                                    artifactId: dependency.artifactId,
-                                                    version: dependency.version)
+                model.dependencies.each { Dependency it ->
+                    Dependency depnd = new Dependency(groupId: it.groupId,
+                                                    artifactId: it.artifactId,
+                                                    version: it.version)
                     artifactRepository.save(depnd)
-                    artifact.dependsOn(depnd)
-                    artifactRepository.save(artifact)
+                    it.dependsOn(depnd)
+                    artifactRepository.save(it)
                 }
 
                 // Retrieve the artifact from the database and print its dependencies
-                artifactRepository.findByArtifactId( artifact.artifactId ).dependencies.each { println "\t-" + it.groupId + " " + it.artifactId + " " + it.version }
+                artifactRepository.findByArtifactId( dependency.artifactId ).dependencies.each { println "\t-" + it.groupId + " " + it.artifactId + " " + it.version }
             }
 
             tx.success()

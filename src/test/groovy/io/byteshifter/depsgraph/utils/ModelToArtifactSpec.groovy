@@ -1,6 +1,6 @@
 package io.byteshifter.depsgraph.utils
 
-import io.byteshifter.depsgraph.domain.Artifact
+import io.byteshifter.depsgraph.domain.Dependency
 import org.apache.maven.model.Model
 import spock.lang.Specification
 import spock.lang.Subject
@@ -45,7 +45,7 @@ class ModelToArtifactSpec extends Specification {
         output = modelToArtifact.transform(input)
 
         then:
-        output instanceof Artifact
+        output instanceof Dependency
         output.groupId == 'groupId'
         output.artifactId == 'artifactId'
         output.version == '1.0'
