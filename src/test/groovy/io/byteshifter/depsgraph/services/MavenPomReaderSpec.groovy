@@ -35,11 +35,21 @@ class MavenPomReaderSpec extends Specification {
         model.version == '5.9.1'
     }
 
-    def "canonicalToPath throws exception with bad canonical"() {
+    def "canonicalToPath throws exception with bad form"() {
         when:
         MavenPomReader.canonicalToPath("garbage")
 
         then:
         thrown IllegalArgumentException
+    }
+
+    def "canonicalToPath converts correctly"() {
+        expect:
+        MavenPomReader.canonicalToPath(a) == b
+
+        where:
+        a                                                                   || b
+        "org.codehaus.groovy:groovy-all:jar:2.4.0"                          || "org/codehaus/groovy/groovy-all/2.4.0/groovy-all-2.4.0.jar"
+        "org.springframework.data:spring-data-neo4j-rest:jar:3.2.1.RELEASE" || "org/springframework/data/spring-data-neo4j-rest/3.2.1.RELEASE/spring-data-neo4j-rest-3.2.1.RELEASE.jar"
     }
 }
