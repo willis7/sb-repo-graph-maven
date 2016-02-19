@@ -77,13 +77,11 @@ public final class MavenPomReader {
         }
     }
 
-    public static Model readModelPom(final File pomXmlFile) throws IOException,
-            XmlPullParserException {
+    public static Model readModelPom(final File pomXmlFile) throws IOException, XmlPullParserException {
         return readModelPre(pomXmlFile, null);
     }
 
-    private static Model readModelPre(final File pomXmlFile, final Model preModel)
-            throws IOException, XmlPullParserException {
+    private static Model readModelPre(final File pomXmlFile, final Model preModel) throws IOException, XmlPullParserException {
 
         final Reader reader;
         if (preModel == null) {

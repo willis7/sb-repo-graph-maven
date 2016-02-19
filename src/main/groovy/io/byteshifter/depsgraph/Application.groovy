@@ -32,7 +32,9 @@ class Application extends Neo4jConfiguration implements CommandLineRunner {
 
     @Bean
     GraphDatabaseService graphDatabaseService() {
-        return new SpringRestGraphDatabase("http://localhost:7474/db/data");
+        def hostname = System.getenv("DB_PORT_7474_TCP_ADDR") ?: 'localhost'
+        println "<<<<<<<<<<<<<<<<<<<< Hostname: ${hostname}"
+        return new SpringRestGraphDatabase("http://${hostname}:7474/db/data")
     }
 
     @Autowired

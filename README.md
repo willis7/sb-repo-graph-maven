@@ -10,19 +10,19 @@ The idea behind this project is to leverage the metadata from your Maven (and ev
 
 ## Installation
 
-This project uses both Docker and Gradle to help build and develop this application.
+This project uses Docker Compose to build the development environment. Make sure its installed before progressing.
 
 To run this application, follow these instructions:
 
-1. First you will need an instance of Neo4j. The easiest way is to use Docker.
-2. In `Application.groovy` make sure you have the correct url for your Neo4j.
-3. Run `./gradlew bootRun` from the project root.
+1. First, you will need to compile the build. From the command line run `./gradlew clean build` from the root of the project.
+2. Once the build has compiled successfully, run `docker-compose build && docker-compose run -d`
 
-If this is successful you should see some artifacts output to the command line, then you can look at your graph in Neo4j.
+If this is successful you should see some artifact details logged to the command line. You can then navigate to the Neo4J container url and see the graph which was generated. `http://<<container address>>:7474`
 
 ## Usage
 
 TODO: Write usage instructions
+
 
 ## Contributing
 

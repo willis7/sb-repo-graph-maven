@@ -34,4 +34,12 @@ class MavenPomReaderSpec extends Specification {
         model.artifactId == 'activemq-pool'
         model.version == '5.9.1'
     }
+
+    def "canonicalToPath throws exception with bad canonical"() {
+        when:
+        MavenPomReader.canonicalToPath("garbage")
+
+        then:
+        thrown IllegalArgumentException
+    }
 }

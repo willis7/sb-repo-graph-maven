@@ -1,11 +1,13 @@
 package io.byteshifter.depsgraph.services
 
+import groovy.io.FileType
+
 /**
  * Helper class for finding and returning files which satisfy a matcher
  *
  * @author Sion Williams
  */
-public class POMFinder {
+class POMFinder {
     // Reference to determine where the code is being run from
     def projectDir = System.getProperty("user.dir")
 
@@ -20,7 +22,7 @@ public class POMFinder {
         def absoluteRepoDir = new File(projectDir, repoPath)
         def pomList = []
 
-        absoluteRepoDir.traverse { File file ->
+        absoluteRepoDir.eachFileRecurse (FileType.FILES) { file ->
             if(isPomFile(file)) {
                 pomList << file
             }
