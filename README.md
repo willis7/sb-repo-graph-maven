@@ -3,10 +3,9 @@
 [![Coverage Status](https://coveralls.io/repos/willis7/sb-repo-graph-maven/badge.svg?branch=master&service=github)](https://coveralls.io/github/willis7/sb-repo-graph-maven?branch=master)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
-This project is a work in progress and very early in development.
+This project is a work in progress, and very early in development.
 
-The idea behind this project is to leverage the metadata from your Maven (and eventually Gradle) files to build a graph of dependendies and how they link together. The idea is that you can then search the graph using the popular GAV parameters of Maven to establish the usage of dependencies.
-
+The idea behind this project is to leverage the metadata from your Maven (and eventually Gradle) build definitions to build a graph of dependendies. The idea is that you can then search the graph using GAV parameters to better understand the usage of dependencies.
 
 ## Installation
 
@@ -19,10 +18,15 @@ To run this application, follow these instructions:
 
 If this is successful you should see some artifact details logged to the command line. You can then navigate to the Neo4J container url and see the graph which was generated. `http://<<container address>>:7474`
 
-## Usage
+## Showcase
 
-TODO: Write usage instructions
+<img src="https://cdn.pbrd.co/images/1FGI3w3H.png" width="200" height="200" />
 
+## Todo
+
+* Seperate the application into a runner and a server.
+    * The runner can push the results of a local analysis, and the server can perform the security check. The runner could be Gradle and Maven plugins.
+* Use [Dependency Check](https://github.com/jeremylong/DependencyCheck)
 
 ## Contributing
 
