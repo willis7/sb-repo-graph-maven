@@ -118,20 +118,24 @@ public final class MavenPomReader {
     }
 
     private static File replaceVars(final File pomXmlFile, final Model model) {
-        final Map<String, Object> vars = new HashMap<String, Object>();
-        vars.put("project", model);
-        addAllModelProperties(vars, model);
+        final Map<String, Object> vars = new HashMap<String, Object>()
+        vars.put("project", model)
+        addAllModelProperties(vars, model)
         try {
-            final String pomXml = FileUtils.readFileToString(pomXmlFile,
-                    "ISO-8859-1");
-            final String replacedPomXml = Utils4J.replaceVars(pomXml, vars);
-            final File targetFile = new File(Utils4J.getTempDir(),
-                    "tmp-pom.xml");
-            FileUtils.write(targetFile, replacedPomXml);
+            final String pomXml = FileUtils.readFileToString(pomXmlFile, "ISO-8859-1")
+            final String replacedPomXml = Utils4J.replaceVars(pomXml, vars)
+            final File targetFile = new File(Utils4J.getTempDir(), "tmp-pom.xml")
+            FileUtils.write(targetFile, replacedPomXml)
             return targetFile;
         } catch (final IOException ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException(ex)
         }
+    }
+
+    private static File replaceVars2(final pomXmlFile, final Model model) {
+        final def vars = [:]
+        vars << [project: model]
+        addAllModelProperties(vars, model)
     }
 
     /**

@@ -10,10 +10,10 @@ import spock.lang.Subject
  */
 class ModelToArtifactSpec extends Specification {
     @Subject
-    private ModelToArtifact modelToArtifact
+    private ModelToDependency modelToArtifact
 
     void setup() {
-        this.modelToArtifact = new ModelToArtifact()
+        this.modelToArtifact = new ModelToDependency()
     }
 
     void cleanup() {

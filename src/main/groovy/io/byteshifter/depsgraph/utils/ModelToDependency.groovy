@@ -8,7 +8,7 @@ import org.apache.maven.model.Model
  * Transformer class for mapping a Maven Model to an Dependency
  * @author Sion Williams
  */
-class ModelToArtifact implements Transformer<Model,Dependency> {
+class ModelToDependency implements Transformer<Model,Dependency> {
 
     @Override
     Dependency transform(Model input) {
