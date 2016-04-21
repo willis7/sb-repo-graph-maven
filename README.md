@@ -24,6 +24,7 @@ If this is successful you should see some artifact details logged to the command
 
 ## Todo
 
+* Expose REST endpoints
 * Seperate the application into a runner and a server.
     * The runner can push the results of a local analysis, and the server can perform the security check. The runner could be Gradle and Maven plugins.
 * Use [Dependency Check](https://github.com/jeremylong/DependencyCheck)
