@@ -32,22 +32,18 @@ repositories {
 
 dependencies {
     compile "org.codehaus.groovy:groovy-all:2.4.0"
-    compile "org.springframework.boot:spring-boot-starter"
-    compile "org.springframework:spring-context"
-    compile "org.springframework:spring-tx"
+    compile "org.springframework.boot:spring-boot-starter-data-rest"
     compile "org.springframework.data:spring-data-neo4j"
     compile "org.springframework.data:spring-data-neo4j-rest:3.2.1.RELEASE"
     compile "org.hibernate:hibernate-validator"
 
-    compile group: 'commons-io', name: 'commons-io', version:'2.4'
-    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.0'
-    compile group: 'org.apache.maven', name: 'maven-plugin-api', version:'3.2.5'
-    compile group: 'org.fuin', name: 'utils4j', version:'0.8.0'
-    compile group: 'org.jboss.shrinkwrap.resolver', name: 'shrinkwrap-resolver-api-maven', version:'2.2.0-beta-1'
-
-    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
     testRuntime "cglib:cglib-nodep:3.1"          // allows mocking of classes (in addition to interfaces)
     testRuntime "org.objenesis:objenesis:2.1"    // allows mocking of classes without default constructor (together with CGLIB)
+}
+
+clean {
+    delete "target"
 }
 
 task wrapper(type: Wrapper) {

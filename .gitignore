@@ -10,6 +10,7 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 /sb-repo-graph-maven.iml
+/target
 /.idea
 
 
