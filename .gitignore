@@ -12,4 +12,5 @@ gradle-app.setting
 /sb-repo-graph-maven.iml
 /.idea
 
+target/
 
