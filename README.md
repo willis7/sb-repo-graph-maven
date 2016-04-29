@@ -29,6 +29,18 @@ If this is successful you should see some artifact details logged to the command
     * The runner can push the results of a local analysis, and the server can perform the security check. The runner could be Gradle and Maven plugins.
 * Use [Dependency Check](https://github.com/jeremylong/DependencyCheck)
 
+## Development
+
+You can create a docker instance of Neo4j with the following:
+
+```
+docker run \
+    --publish=7474:7474 --publish=7687:7687 \
+    --volume=$HOME/neo4j/data:/data \
+    --env=NEO4J_AUTH=none \
+    neo4j:3.0
+```
+
 ## Contributing
 
 1. Fork it!

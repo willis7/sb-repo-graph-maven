@@ -4,6 +4,7 @@ import org.springframework.data.neo4j.annotation.Fetch
 import org.springframework.data.neo4j.annotation.GraphId
 import org.springframework.data.neo4j.annotation.NodeEntity
 import org.springframework.data.neo4j.annotation.RelatedTo
+import org.springframework.data.rest.core.annotation.RestResource
 
 import static org.neo4j.graphdb.Direction.OUTGOING
 
@@ -29,6 +30,7 @@ class Dependency {
     String artifactId
     String version
 
+    @RestResource(exported = false)
     @RelatedTo(type = "DEPENDS_ON", direction = OUTGOING)
     @Fetch
     Set<Dependency> dependencies
